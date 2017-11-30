@@ -11,8 +11,7 @@ import os
 
 from flask import Flask
 from flask_restful import Api
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from flask_sqlalchemy import SQLAlchemy
 
 ROOT_DIR = dirname(dirname(abspath(__file__)))
 LOGFILE_DIR = ROOT_DIR + '/logs'
@@ -34,7 +33,7 @@ def init_log():
 
     logger.addHandler(console)
 
-    handler = logging.handlers.TimedRotatingFileHandler('{0}/{1}-{2}'.format(LOGFILE_DIR, PROJECT_NAME, os.getpid()),
+    handler = logging.handlers.TimedRotatingFileHandler('{0}/{1}'.format(LOGFILE_DIR, PROJECT_NAME),
                                                         when='D', interval=1, backupCount=30, encoding='utf8')
     handler.suffix = "%Y%m%d.log"
     handler.setFormatter(formatter)
@@ -48,11 +47,7 @@ restful_api = Api(app)
 app.secret_key = '34384n43229k3'
 app.config.from_object('config')
 
+db = SQLAlchemy(app)
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI, encoding='utf8', pool_size=15, pool_recycle=500) # echo_pool=True, echo=True)
-# itopia_engine = create_engine(ITOPIA_SQLALCHEMY_DATABASE_URI, encoding='utf8', pool_size=15, pool_recycle=500) # echo_pool=True, echo=True)
 
-# Session 工厂类
-Session = scoped_session(sessionmaker(bind=engine))
-# ItopiaSession = scoped_session(sessionmaker(bind=itopia_engine))
-
+from .views import *

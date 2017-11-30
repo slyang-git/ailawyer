@@ -23,8 +23,10 @@ else:  # 生产环境
     DB_PASSWORD = ''
     DB_NAME = ''
 
+SQLALCHEMY_DATABASE_URI = 'sqlite://test.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{0}:{1}@{2}/{3}?charset=utf8mb4&use_unicode=1'.format(DB_USERNAME,
-                                                                                              DB_PASSWORD,
-                                                                                              DB_HOST,
-                                                                                              DB_NAME)
+# SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{0}:{1}@{2}/{3}?charset=utf8mb4&use_unicode=1'.format(DB_USERNAME,
+#                                                                                               DB_PASSWORD,
+#                                                                                               DB_HOST,
+#                                                                                               DB_NAME)

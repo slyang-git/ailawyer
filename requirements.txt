@@ -1,0 +1,7 @@
+Flask==0.12
+Flask-RESTful==0.3.6
+Flask-SQLAlchemy==2.2
+pycrypto==2.6.1
+PyMySQL==0.7.11
+requests==2.13.0
+Werkzeug==0.12.2

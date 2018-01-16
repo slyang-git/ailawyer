@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% import 'macros.html' as forms %}
+
+{% block title %}这是一个测试页面{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important {color: #336699}
+        .odd {background-color: #552225}
+    </style>
+{% endblock %}
+
+{% block content %}
+<h1> {{ self.title() }}</h1>
+<ul>
+{% for item in seq %}
+    <li class="important {{ loop.cycle('odd', 'even') }}">{{ item }}</li>
+{% endfor %}
+</ul>
+<dl>
+    <dt>Username</dt>
+    <dd>{{ forms.input('username') }}</dd>
+    <dt>Password</dt>
+    <dd>{{ forms.input('password', type='password') }}</dd>
+</dl>
+{% endblock %}

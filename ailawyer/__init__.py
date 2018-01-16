@@ -43,6 +43,11 @@ def init_log():
 
 init_log()
 app = Flask(__name__)
+app.jinja_env.auto_reload = True
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
+
+
 restful_api = Api(app)
 app.secret_key = '34384n43229k3'
 app.config.from_object('config')

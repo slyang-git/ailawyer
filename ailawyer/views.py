@@ -4,7 +4,7 @@
 Created by yangshuanglong at 17/11/30
 """
 
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 import json
 import logging
 
@@ -29,3 +29,10 @@ def realname():
     }
     logger.info('实名认证接口返回数据：%s', json.dumps(rv))
     return jsonify(rv)
+
+
+@app.route('/test')
+def test():
+    return render_template('test.html',
+                           seq=[1, 2, 3, 4, 5, 6, 7, 8, 9],
+                           username='<dfdsfdsf&')
